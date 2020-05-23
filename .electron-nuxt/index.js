@@ -54,7 +54,7 @@ const webpackMain = new Webpack({
 const nuxt = new NuxtApp(new Logger('Nuxt', 'green'))
 
 const pipe = new Pipeline({
-  title: 'Electron-nuxt',
+  title: '3dsend',
   isDevelopment: isDev,
   steps: [webpackMain, nuxt],
   launcher,

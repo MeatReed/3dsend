@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <v-app id="3dsend">
     <appheader />
-    <nuxt />
-  </div>
+    <v-content>
+      <nuxt keep-alive />
+    </v-content>
+  </v-app>
 </template>
 
 <script>

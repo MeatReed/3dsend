@@ -3,7 +3,6 @@
  * This default configuration can be overwritten in this file
  * @link {https://nuxtjs.org/guide/configuration/}
  */
-
 module.exports = {
   mode: 'spa', // or 'universal'
   head: {
@@ -12,7 +11,7 @@ module.exports = {
   loading: false,
   plugins: [{ ssr: true, src: '@/plugins/icons.js' }],
   buildModules: ['@nuxt/components'],
-  modules: ['@nuxtjs/vuetify'],
+  modules: ['@nuxtjs/vuetify', '@nuxtjs/axios'],
   vuetify: {
     theme: {
       themes: {

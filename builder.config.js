@@ -44,7 +44,7 @@ const macOS = {
 module.exports = {
   asar: false,
   productName: '3dsend',
-  appId: 'org.meatreed.3dsend',
+  appId: 'com.meatreed.3dsend',
   artifactName: '3dsend-${version}.${ext}',
   directories: {
     output: 'build'

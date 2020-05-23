@@ -1,6 +1,5 @@
 /* globals INCLUDE_RESOURCES_PATH */
 import { app } from 'electron'
-
 /**
  * Set `__resources` path to resources files in renderer process
  */
@@ -19,3 +18,6 @@ app.on('window-all-closed', function() {
 
 // Load here all startup windows
 require('./mainWindow')
+
+// Load server API
+require('../server')
