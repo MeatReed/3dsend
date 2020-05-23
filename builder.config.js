@@ -3,7 +3,7 @@ const ICONS_DIR = 'build/icons/'
 const windowsOS = {
   win: {
     icon: ICONS_DIR + 'win-icon.ico',
-    publisherName: 'michal',
+    publisherName: 'MeatReed',
     target: 'nsis'
   },
 
@@ -43,9 +43,9 @@ const macOS = {
 
 module.exports = {
   asar: false,
-  productName: 'My browser',
-  appId: 'org.michalzarach.my-browser',
-  artifactName: 'my-browser-${version}.${ext}',
+  productName: '3dsend',
+  appId: 'org.meatreed.3dsend',
+  artifactName: '3dsend-${version}.${ext}',
   directories: {
     output: 'build'
   },
