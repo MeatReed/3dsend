@@ -1,0 +1,56 @@
+{
+  "name": "3dsend",
+  "version": "0.0.1",
+  "description": "Interface graphique sous Windows permettant d'installer des cias facilement ! :D",
+  "main": "./dist/main/index.js",
+  "scripts": {
+    "dev": "node .electron-nuxt/dev.js",
+    "build": "node .electron-nuxt/build.js",
+    "test": "",
+    "lint": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter ./src",
+    "lint:fix": "yarn run lint -- --fix",
+    "preinstall": "node .electron-nuxt/check-engines.js",
+    "postinstall": "electron-builder install-app-deps & yarn run lint:fix"
+  },
+  "keywords": [],
+  "author": "MeatReed <meatreeed@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/MeatReed/3dsend/blob/master/README.md",
+  "engines": {
+    "node": ">=12.13.0"
+  },
+  "resolutions": {
+    "@types/node": "12.12.6"
+  },
+  "devDependencies": {
+    "@mdi/font": "5.2.45",
+    "@nuxt/components": "^0.2.5",
+    "@nuxtjs/eslint-config": "1.1.2",
+    "@nuxtjs/vuetify": "1.11.2",
+    "@xpda-dev/core": "^0.1.5",
+    "@xpda-dev/electron-builder": "^0.2.1",
+    "@xpda-dev/electron-launcher": "^0.2.1",
+    "@xpda-dev/webpack-step": "^0.1.2",
+    "babel-eslint": "10.1.0",
+    "browser-env": "3.3.0",
+    "cross-env": "7.0.2",
+    "deepmerge": "4.2.2",
+    "electron": "8.3.0",
+    "electron-builder": "22.6.0",
+    "electron-debug": "3.0.1",
+    "eslint": "5.16.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-friendly-formatter": "4.0.1",
+    "eslint-loader": "3.0.4",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "native-ext-loader": "2.3.0",
+    "nuxt": "2.12.2",
+    "roboto-fontface": "0.10.0",
+    "vue-devtools": "5.1.3",
+    "vuetify": "2.2.29",
+    "webpack": "4.43.0",
+    "webpack-node-externals": "1.7.2"
+  },
+  "dependencies": {}
+}
