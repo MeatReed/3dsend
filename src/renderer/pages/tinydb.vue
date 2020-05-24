@@ -30,14 +30,11 @@
             contain
             :src="getQRCode(item)"
           />
-          <!-- <v-card-actions>
-            <v-btn text @click="download(item.name)">
+          <v-card-actions>
+            <v-btn text @click="download(item)">
               Télécharger
             </v-btn>
-            <v-btn text @click="modalPackage(packages, item.name)">
-              Information
-            </v-btn>
-          </v-card-actions> -->
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -45,6 +42,8 @@
 </template>
 
 <script>
+import { remote } from 'electron'
+
 export default {
   data: () => ({
     alertMessage: null,
@@ -62,6 +61,11 @@ export default {
     getVersion: function (item) {
       if(item.cia[0] === undefined) return;
       return item.cia[item.cia.length - 1].version
+    },
+    download: function (item) {
+      if(item.cia[0] === undefined) return;
+      remote.shell.openExternal(item.cia[item.cia.length - 1].download_url)
+      return
     }
   }
 }
