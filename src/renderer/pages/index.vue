@@ -1,5 +1,12 @@
 <template>
   <v-container>
+    <v-row v-if="alertMessage">
+      <v-col>
+        <v-alert type="error" dismissible>
+          {{ alertMessage }}
+        </v-alert>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <v-file-input
@@ -56,7 +63,8 @@ export default {
     disabledBtnQRCode: true,
     urlFile: null,
     QRCodeLoading: false,
-    disabledInputFile: false
+    disabledInputFile: false,
+    alertMessage: null,
   }),
   watch: {
     modelCiaChoose(file) {
@@ -81,6 +89,12 @@ export default {
       this.disabledInputFile = true
       this.urlFile = null
       const ipV4 = await internalIp.v4()
+      if (!ipV4) {
+        this.alertMessage = "Vous n'êtes pas connecté à un réseau !"
+        this.QRCodeLoading = false
+        this.disabledInputFile = false
+        return
+      }
       const QRCodeResponse = await this.$axios.$post(
         `http://${ipV4}:9850/api/generateURL`,
         {
