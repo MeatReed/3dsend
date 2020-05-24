@@ -1,6 +1,6 @@
 # 3dsend
 
-> Interface graphique sous Windows permettant d'installer des cias facilement ! :D
+> Interface graphique sous Windows et Linux permettant d'installer des cias facilement ! :D
 
 #### Build Setup
 
