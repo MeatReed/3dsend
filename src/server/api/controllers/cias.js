@@ -22,9 +22,12 @@ router.post('/generateURL', async function(req, res) {
     }
     storage.get('cias', async function(error, data) {
       if (error) throw error
-      let nowData = data
-      nowData.push(info)
-      await storage.set('cias', data)
+      const value = data.find((value) => value.nameSlug === info.nameSlug)
+      if (!value) {
+        let nowData = data
+        nowData.push(info)
+        await storage.set('cias', data)
+      }
     })
     res.json(info)
   }
