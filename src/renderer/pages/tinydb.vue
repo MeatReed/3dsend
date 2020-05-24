@@ -9,7 +9,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <h1>En développement</h1>
+        <h1>En développement..</h1>
       </v-col>
     </v-row>
   </v-container>
