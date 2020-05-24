@@ -45,7 +45,7 @@ module.exports = {
   asar: false,
   productName: '3dsend',
   appId: 'com.meatreed.3dsend',
-  artifactName: '3dsend-${version}.${ext}',
+  artifactName: '3dsend.${ext}',
   directories: {
     output: 'build'
   },
