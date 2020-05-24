@@ -97,18 +97,27 @@ export default {
         this.QRCodeLoading = false
         this.disabledInputFile = false
         return
+      } else {
+        this.$store
+          .dispatch('generateURL', {
+            filePath: this.fileSelected.path,
+            fileName: this.fileSelected.name,
+            ipV4
+          })
+          .then((response) => {
+            this.QRCodeLoading = false
+            this.disabledInputFile = false
+            this.disabledBtnQRCode = false
+            this.urlFile = response.url
+          })
+          .catch((err) => {
+            this.alertMessage = err.response.data.error
+            this.QRCodeLoading = false
+            this.disabledInputFile = false
+            this.disabledBtnQRCode = false
+            this.urlFile = null
+          })
       }
-      const QRCodeResponse = await this.$axios.$post(
-        `http://${ipV4}:9850/api/generateURL`,
-        {
-          filePath: this.fileSelected.path,
-          fileName: this.fileSelected.name
-        }
-      )
-      this.QRCodeLoading = false
-      this.disabledInputFile = false
-      this.disabledBtnQRCode = false
-      this.urlFile = QRCodeResponse.url
     }
   }
 }
