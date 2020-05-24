@@ -4,7 +4,7 @@ const storage = require('electron-json-storage')
 const internalIp = require('internal-ip')
 const slugify = require('slugify')
 
-router.post('/generateURL', async function(req, res, next) {
+router.post('/generateURL', async function(req, res) {
   const fileLocation = req.body.filePath
   const fileName = req.body.fileName
   const ipV4 = await internalIp.v4()
@@ -36,7 +36,7 @@ router.get('/install/:slugname', function(req, res, next) {
       error: 'Une erreur est survenue'
     })
   } else {
-    storage.get('cias', async function(error, data) {
+    storage.get('cias', function(error, data) {
       if (error) throw error
       const value = data.find((value) => value.nameSlug === SlugName)
       res.sendFile(value.path)

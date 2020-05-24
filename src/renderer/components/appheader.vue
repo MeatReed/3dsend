@@ -42,10 +42,10 @@ export default {
     ]
   }),
   methods: {
-    closeWindow: function () {
+    closeWindow: function() {
       var window = remote.getCurrentWindow()
       window.close()
-    },
-  },
+    }
+  }
 }
 </script>

@@ -64,7 +64,7 @@ export default {
     urlFile: null,
     QRCodeLoading: false,
     disabledInputFile: false,
-    alertMessage: null,
+    alertMessage: null
   }),
   watch: {
     modelCiaChoose(file) {
