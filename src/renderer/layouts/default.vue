@@ -15,4 +15,8 @@ export default {}
 body {
   margin: 0 !important;
 }
+
+.centered {
+  text-align: center;
+}
 </style>

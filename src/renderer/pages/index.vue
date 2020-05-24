@@ -112,8 +112,4 @@ export default {
 }
 </script>
 
-<style>
-.centered {
-  text-align: center;
-}
-</style>
+<style scoped></style>
