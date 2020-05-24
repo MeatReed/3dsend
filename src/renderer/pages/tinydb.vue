@@ -16,7 +16,7 @@
           color="primary"
         />
       </v-col>
-      <v-col v-else v-for="(item, index) of apps" :key="index" v-if="item.cia[0] !== undefined">
+      <v-col v-if-else v-for="(item, index) of apps" :key="index" v-if="item.cia[0] !== undefined">
         <v-card max-width="350" outlined>
           <v-card-title>
             {{ item.name }}
