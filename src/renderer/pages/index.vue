@@ -82,6 +82,9 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
+          <v-btn text @click="deleteHistory()">
+            Supprimer l'historique
+          </v-btn>
           <v-btn text @click="dialogHistoryFiles = false">
             Fermer
           </v-btn>
@@ -177,6 +180,11 @@ export default {
             this.urlFile = null
           })
       }
+    },
+    async deleteHistory() {
+      await storage.set('cias', [])
+      this.ciasStorage = []
+      this.$fetch()
     }
   }
 }
