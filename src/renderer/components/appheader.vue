@@ -37,8 +37,8 @@ export default {
   data: () => ({
     drawer: false,
     items: [
-      //{ title: 'Accueil', icon: 'mdi-home', to: '/' },
-      { title: 'Générer des QRCode', icon: 'mdi-qrcode', to: '/' }
+      { title: 'Générer des QRCode', icon: 'mdi-qrcode', to: '/' },
+      { title: 'TinyDB', icon: 'mdi-application', to: '/tinydb' }
     ]
   }),
   methods: {
