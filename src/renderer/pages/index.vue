@@ -11,9 +11,9 @@
       <v-col>
         <v-file-input
           v-model="modelCiaChoose"
-          placeholder="Choisir un fichier .cia"
-          label="Payload"
-          accept=".cia"
+          placeholder="Choisir un fichier .cia, .nsp, .xci, .nsz ou xcz"
+          label="Fichier .cia, .nsp, .xci, .nsz ou xcz"
+          accept=".cia, .nsp, .xci, .nsz, .xcz"
           prepend-icon="mdi-paperclip"
           :disabled="disabledInputFile"
         >
@@ -87,6 +87,7 @@ export default {
     async createQRCode() {
       this.QRCodeLoading = true
       this.disabledInputFile = true
+      this.disabledBtnQRCode = true
       this.urlFile = null
       const ipV4 = await internalIp.v4()
       if (!ipV4) {
@@ -104,6 +105,7 @@ export default {
       )
       this.QRCodeLoading = false
       this.disabledInputFile = false
+      this.disabledBtnQRCode = false
       this.urlFile = QRCodeResponse.url
     }
   }
