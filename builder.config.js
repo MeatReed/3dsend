@@ -19,30 +19,8 @@ const linuxOS = {
   }
 }
 
-const macOS = {
-  mac: {
-    target: 'dmg',
-    icon: ICONS_DIR + 'con.icns'
-  },
-  dmg: {
-    contents: [
-      {
-        x: 410,
-        y: 150,
-        type: 'link',
-        path: '/Applications'
-      },
-      {
-        x: 130,
-        y: 150,
-        type: 'file'
-      }
-    ]
-  }
-}
-
 module.exports = {
-  asar: false,
+  asar: true,
   productName: '3dsend',
   appId: 'com.meatreed.3dsend',
   artifactName: '3dsend.${ext}',
@@ -66,6 +44,5 @@ module.exports = {
     }
   ],
   ...windowsOS,
-  ...linuxOS,
-  ...macOS
+  ...linuxOS
 }
