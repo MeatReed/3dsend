@@ -19,7 +19,7 @@
                     MeatReed
                   </v-list-item-title>
                   <v-list-item-subtitle>
-                    Application: 1.0.0
+                    Application: 1.0.1
                   </v-list-item-subtitle>
                   <v-list-item-subtitle>
                     Nuxt.js: {{ nuxt }}
