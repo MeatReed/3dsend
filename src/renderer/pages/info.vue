@@ -1,114 +1,87 @@
 <template>
-  <v-container>
-    <v-row v-if="alertMessage">
-      <v-col>
-        <v-alert type="error" dismissible>
-          {{ alertMessage }}
-        </v-alert>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <v-file-input
-          v-model="modelCiaChoose"
-          placeholder="Choisir un fichier .cia, .nsp, .xci, .nsz ou .xcz"
-          label="Fichier .cia, .nsp, .xci, .nsz ou .xcz"
-          accept=".cia, .nsp, .xci, .nsz, .xcz"
-          prepend-icon="mdi-paperclip"
-          :disabled="disabledInputFile"
-        >
-          <template v-slot:selection="{ text }">
-            <v-chip small label>
-              {{ text }}
-            </v-chip>
-          </template>
-        </v-file-input>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col class="centered">
-        <v-btn small :disabled="disabledBtnQRCode" @click="createQRCode"
-          >Créer un QRCode</v-btn
-        >
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col v-if="QRCodeLoading" class="centered">
-        <v-progress-circular
-          :size="70"
-          :width="7"
-          indeterminate
-          color="primary"
-        />
-      </v-col>
-      <v-col v-else class="centered">
-        <qrcode-vue v-if="urlFile" :value="urlFile" size="300" level="Q" />
-      </v-col>
-    </v-row>
-  </v-container>
+  <div>
+    <v-content>
+      <v-container class="fill-height" fluid>
+        <v-row id="menuIcons" align="center" justify="start">
+          <v-col cols="4">
+            <v-avatar tile size="250">
+              <v-img
+                :src="require('../assets/avatar.png')"
+              />
+            </v-avatar>
+          </v-col>
+          <v-col cols="8">
+            <v-card outlined>
+              <v-list-item three-line>
+                <v-list-item-content>
+                  <div class="overline mb-4">
+                    Information
+                  </div>
+                  <v-list-item-title class="headline mb-1">
+                    MeatReed
+                  </v-list-item-title>
+                  <v-list-item-subtitle>
+                    Nuxt.js: {{ nuxt }}
+                  </v-list-item-subtitle>
+                  <v-list-item-subtitle>Vue.js: {{ vue }}</v-list-item-subtitle>
+                  <v-list-item-subtitle>
+                    Electron: {{ electron }}
+                  </v-list-item-subtitle>
+                  <v-list-item-subtitle>Node: {{ node }}</v-list-item-subtitle>
+                  <v-list-item-subtitle>
+                    Chrome: {{ chrome }}
+                  </v-list-item-subtitle>
+                  <v-list-item-subtitle>
+                    Platform: {{ platform }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-card-actions>
+                <v-btn
+                  text
+                  @click="
+                    openLink(
+                      'https://www.youtube.com/channel/UCxcgIQ08IewI19Q_eiJxKRA'
+                    )
+                  "
+                >
+                  <v-icon>mdi-youtube</v-icon>Youtube
+                </v-btn>
+                <v-btn text @click="openLink('https://discord.gg/9q7E6df')">
+                  <v-icon>mdi-discord</v-icon>Discord
+                </v-btn>
+                <v-btn text @click="openLink('https://github.com/MeatReed')">
+                  <v-icon>mdi-github</v-icon>Github
+                </v-btn>
+                <v-btn text @click="openLink('https://github.com/MeatReed/nsmultitools')">
+                  <v-icon>mdi-application</v-icon>NSMultiTools
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+  </div>
 </template>
 
 <script>
-import storage from 'electron-json-storage'
-import internalIp from 'internal-ip'
-import QrcodeVue from 'qrcode.vue'
+import { remote } from 'electron'
 
 export default {
-  components: {
-    QrcodeVue
-  },
-  data: () => ({
-    modelCiaChoose: null,
-    fileSelected: null,
-    disabledBtnQRCode: true,
-    urlFile: null,
-    QRCodeLoading: false,
-    disabledInputFile: false,
-    alertMessage: null
-  }),
-  watch: {
-    modelCiaChoose(file) {
-      this.fileSelected = file
-      this.urlFile = null
-      if (file) {
-        this.disabledBtnQRCode = false
-      } else {
-        this.disabledBtnQRCode = true
-      }
+  data() {
+    return {
+      chrome: process.versions.chrome,
+      electron: process.versions.electron,
+      node: process.versions.node,
+      platform: require('os').platform(),
+      vue: require('vue/package.json').version,
+      nuxt: require('nuxt/package.json').version
     }
   },
-  created() {
-    storage.get('cias', async function(error, data) {
-      if (error) throw error
-      if (!data) {
-        await storage.set('cias', [])
-      }
-    })
-  },
   methods: {
-    async createQRCode() {
-      this.QRCodeLoading = true
-      this.disabledInputFile = true
-      this.disabledBtnQRCode = true
-      this.urlFile = null
-      const ipV4 = await internalIp.v4()
-      if (!ipV4) {
-        this.alertMessage = "Vous n'êtes pas connecté à un réseau !"
-        this.QRCodeLoading = false
-        this.disabledInputFile = false
-        return
-      }
-      const QRCodeResponse = await this.$axios.$post(
-        `http://${ipV4}:9850/api/generateURL`,
-        {
-          filePath: this.fileSelected.path,
-          fileName: this.fileSelected.name
-        }
-      )
-      this.QRCodeLoading = false
-      this.disabledInputFile = false
-      this.disabledBtnQRCode = false
-      this.urlFile = QRCodeResponse.url
+    openLink(link) {
+      remote.shell.openExternal(link)
     }
   }
 }
