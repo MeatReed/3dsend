@@ -39,7 +39,7 @@ router.get('/install/:slugname', function(req, res, next) {
     storage.get('cias', async function(error, data) {
       if (error) throw error
       const value = data.find((value) => value.nameSlug === SlugName)
-      res.download(value.path)
+      res.sendFile(value.path)
     })
   }
 })
