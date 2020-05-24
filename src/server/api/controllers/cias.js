@@ -21,7 +21,8 @@ router.post('/generateURL', async function(req, res) {
     }
     storage.get('cias', async function(error, data) {
       if (error) throw error
-      data.push(info)
+      let nowData = data
+      nowData.push(info)
       await storage.set('cias', data)
     })
     res.json(info)

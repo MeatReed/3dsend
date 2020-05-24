@@ -77,11 +77,13 @@ export default {
       }
     }
   },
-  async created() {
-    const cias = await storage.get('cias')
-    if (!cias) {
-      await storage.set('cias', [])
-    }
+  created() {
+    storage.get('cias', async function(error, data) {
+      if (error) throw error
+      if (!data) {
+        await storage.set('cias', [])
+      }
+    })
   },
   methods: {
     async createQRCode() {
