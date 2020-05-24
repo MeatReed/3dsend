@@ -16,8 +16,8 @@
           color="primary"
         />
       </v-col>
-      <v-col v-else v-for="(item, index) of apps" :key="index">
-        <v-card class="mx-auto" max-width="344" outlined>
+      <v-col v-else v-for="(item, index) of apps" :key="index" v-if="item.cia[0] !== undefined">
+        <v-card max-width="350" outlined>
           <v-card-title>
             {{ item.name }}
           </v-card-title>
@@ -26,7 +26,8 @@
           </div>
           <v-img
             class="white--text align-end"
-            height="200px"
+            height="250"
+            contain
             :src="getQRCode(item)"
           />
           <!-- <v-card-actions>
