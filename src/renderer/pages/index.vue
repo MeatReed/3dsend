@@ -11,8 +11,8 @@
       <v-col>
         <v-file-input
           v-model="modelCiaChoose"
-          placeholder="Choisir un fichier .cia, .nsp, .xci, .nsz ou xcz"
-          label="Fichier .cia, .nsp, .xci, .nsz ou xcz"
+          placeholder="Choisir un fichier .cia, .nsp, .xci, .nsz ou .xcz"
+          label="Fichier .cia, .nsp, .xci, .nsz ou .xcz"
           accept=".cia, .nsp, .xci, .nsz, .xcz"
           prepend-icon="mdi-paperclip"
           :disabled="disabledInputFile"
