@@ -5,9 +5,7 @@
         <v-row id="menuIcons" align="center" justify="start">
           <v-col cols="4">
             <v-avatar tile size="250">
-              <v-img
-                :src="require('../assets/avatar.png')"
-              />
+              <v-img :src="require('../assets/avatar.png')" />
             </v-avatar>
           </v-col>
           <v-col cols="8">
@@ -56,7 +54,10 @@
                 <v-btn text @click="openLink('https://github.com/MeatReed')">
                   <v-icon>mdi-github</v-icon>Github
                 </v-btn>
-                <v-btn text @click="openLink('https://github.com/MeatReed/nsmultitools')">
+                <v-btn
+                  text
+                  @click="openLink('https://github.com/MeatReed/nsmultitools')"
+                >
                   <v-icon>mdi-application</v-icon>NSMultiTools
                 </v-btn>
               </v-card-actions>

@@ -48,10 +48,7 @@
         <qrcode-vue v-if="urlFile" :value="urlFile" size="300" level="Q" />
       </v-col>
     </v-row>
-    <v-dialog
-      v-model="dialogHistoryFiles"
-      width="600"
-    >
+    <v-dialog v-model="dialogHistoryFiles" width="600">
       <v-card>
         <v-card-title>
           Historique des QRCodes générés
@@ -71,9 +68,7 @@
               @click="recreateQRCode(item.path, item.name)"
             >
               <v-list-item-content>
-                <v-list-item-title
-                  v-text="`Nom : ${item.name}`"
-                />
+                <v-list-item-title v-text="`Nom : ${item.name}`" />
                 <v-list-item-subtitle>{{ item.path }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -87,10 +82,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-            text
-            @click="dialogHistoryFiles = false"
-          >
+          <v-btn text @click="dialogHistoryFiles = false">
             Fermer
           </v-btn>
         </v-card-actions>
