@@ -6,7 +6,8 @@
 module.exports = {
   mode: 'spa', // or 'universal'
   head: {
-    title: '3dsend'
+    title: '3dsend',
+    meta: [{ charset: 'utf-8' }]
   },
   loading: false,
   plugins: [{ ssr: true, src: '@/plugins/icons.js' }],
