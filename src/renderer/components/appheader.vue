@@ -20,13 +20,13 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <!-- <template v-slot:append>
+      <template v-slot:append>
         <div class="pa-2">
           <v-btn nuxt to="/options" block>
             Options
           </v-btn>
         </div>
-      </template> -->
+      </template>
     </v-navigation-drawer>
   </div>
 </template>
