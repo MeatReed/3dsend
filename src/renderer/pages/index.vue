@@ -58,10 +58,9 @@
           :size="70"
           :width="7"
           indeterminate
-          color="primary"
         />
         <v-list dense v-else>
-          <v-list-item-group color="primary">
+          <v-list-item-group>
             <v-list-item
               v-for="(item, i) in ciasStorage"
               :key="i"
