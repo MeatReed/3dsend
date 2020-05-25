@@ -13,10 +13,13 @@ import storage from 'electron-json-storage'
 export default {
   created() {
     const context = this
-    storage.get('dark', async function(error, data) {
+    storage.get('config', async function(error, data) {
       if (error) throw error
-      if (!data) {
-        await storage.set('dark', { dark: true })
+      if (!data.dark) {
+        await storage.set('config', {
+          dark: true,
+          port: data.port ? data.port : 9850
+        })
         context.$vuetify.theme.dark = true
       } else {
         context.$vuetify.theme.dark = data.dark

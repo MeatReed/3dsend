@@ -20,9 +20,7 @@
               <v-list-item-subtitle>
                 Application: 1.0.1
               </v-list-item-subtitle>
-              <v-list-item-subtitle>
-                Nuxt.js: {{ nuxt }}
-              </v-list-item-subtitle>
+              <v-list-item-subtitle> Nuxt.js: {{ nuxt }} </v-list-item-subtitle>
               <v-list-item-subtitle>Vue.js: {{ vue }}</v-list-item-subtitle>
               <v-list-item-subtitle>
                 Electron: {{ electron }}
@@ -48,13 +46,25 @@
             >
               <v-icon>mdi-youtube</v-icon>Youtube
             </v-btn>
-            <v-btn text color="primary" @click="openLink('https://discord.gg/9q7E6df')">
+            <v-btn
+              text
+              color="primary"
+              @click="openLink('https://discord.gg/9q7E6df')"
+            >
               <v-icon>mdi-discord</v-icon>Discord
             </v-btn>
-            <v-btn text color="primary" @click="openLink('https://github.com/MeatReed')">
+            <v-btn
+              text
+              color="primary"
+              @click="openLink('https://github.com/MeatReed')"
+            >
               <v-icon>mdi-github</v-icon>Github
             </v-btn>
-            <v-btn text color="primary" @click="openLink('https://github.com/MeatReed/nsmultitools')">
+            <v-btn
+              text
+              color="primary"
+              @click="openLink('https://github.com/MeatReed/nsmultitools')"
+            >
               <v-icon>mdi-application</v-icon>NSMultiTools
             </v-btn>
           </v-card-actions>

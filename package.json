@@ -59,6 +59,7 @@
     "express": "^4.17.1",
     "internal-ip": "^6.0.0",
     "qrcode.vue": "^1.7.0",
-    "slugify": "^1.4.0"
+    "slugify": "^1.4.0",
+    "tcp-port-used": "^1.0.1"
   }
 }

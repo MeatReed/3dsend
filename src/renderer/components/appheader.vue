@@ -10,7 +10,13 @@
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app>
       <v-list dense nav>
-        <v-list-item v-for="item in items" :key="item.title" nuxt :to="item.to" color="primary">
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          nuxt
+          :to="item.to"
+          color="primary"
+        >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -44,7 +50,7 @@ export default {
   }),
   methods: {
     closeWindow: function() {
-      var window = remote.getCurrentWindow()
+      const window = remote.getCurrentWindow()
       window.close()
     }
   }

@@ -29,7 +29,11 @@
     </v-row>
     <v-row>
       <v-col class="centered">
-        <v-btn small color="primary" :disabled="disabledBtnQRCode" @click="createQRCode"
+        <v-btn
+          small
+          color="primary"
+          :disabled="disabledBtnQRCode"
+          @click="createQRCode"
           >Créer un QRCode</v-btn
         >
         <v-btn small color="primary" @click="dialogHistoryFiles = true"
@@ -48,7 +52,9 @@
       </v-col>
       <v-col v-else-if="urlFile && !QRCodeLoading" class="centered colQRCode">
         <qrcode-vue :value="urlFile" size="300" level="Q" />
-        <p>Pour éviter tout problème de détecter du QRCode, la zone est grisé.</p>
+        <p>
+          Pour éviter tout problème de détecter du QRCode, la zone est grisé.
+        </p>
       </v-col>
     </v-row>
     <v-dialog v-model="dialogHistoryFiles" width="600">
