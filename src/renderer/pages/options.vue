@@ -33,10 +33,7 @@
         <v-btn small color="primary" @click="savePortChange">Sauvegarder</v-btn>
       </v-col>
     </v-row>
-    <v-dialog
-      v-model="dialogRestart"
-      max-width="400"
-    >
+    <v-dialog v-model="dialogRestart" max-width="400">
       <v-card>
         <v-card-title class="headline">Attention !</v-card-title>
 
@@ -47,17 +44,11 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn
-            text
-            @click="dialogRestart = false"
-          >
+          <v-btn text @click="dialogRestart = false">
             Pas maintenant
           </v-btn>
 
-          <v-btn
-            text
-            @click="relaunch"
-          >
+          <v-btn text @click="relaunch">
             Redémarrer 3DSend
           </v-btn>
         </v-card-actions>
@@ -104,10 +95,11 @@ export default {
     async savePortChange() {
       const ipV4 = await internalIp.v4()
       const context = this
-      tcpPortUsed.check(parseInt(this.modelInputPort), ipV4)
-        .then(async function(inUse) {
+      tcpPortUsed.check(parseInt(this.modelInputPort), ipV4).then(
+        async function(inUse) {
           if (inUse) {
-            context.alertMessage = "Le port " + context.modelInputPort + " est déjà utilisé !"
+            context.alertMessage =
+              'Le port ' + context.modelInputPort + ' est déjà utilisé !'
           } else {
             await storage.set('config', {
               dark: context.modelSwitchDarkMode,
@@ -115,9 +107,11 @@ export default {
             })
             context.dialogRestart = true
           }
-        }, function(err) {
-            context.alertMessage = err
-        })
+        },
+        function(err) {
+          context.alertMessage = err
+        }
+      )
     },
     async relaunch() {
       remote.app.relaunch()
