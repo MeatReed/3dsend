@@ -8,6 +8,11 @@
       </v-col>
     </v-row>
     <v-row>
+      <v-col>
+        <h1>TinyDB</h1>
+      </v-col>
+    </v-row>
+    <v-row>
       <v-col v-if="$fetchState.pending" class="centered">
         <v-progress-circular
           :size="70"

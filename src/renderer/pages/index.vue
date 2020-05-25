@@ -9,6 +9,7 @@
     </v-row>
     <v-row>
       <v-col>
+        <h1>Générer un QRCode</h1>
         <v-file-input
           v-model="modelCiaChoose"
           placeholder="Choisir un fichier .cia, .nsp, .xci, .nsz ou .xcz"
