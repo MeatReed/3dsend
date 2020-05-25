@@ -20,7 +20,8 @@
         v-for="(item, index) of apps"
         :key="index"
         :todo="item"
-        v-if="item.cia[0] && $fetchState.pending"
+        v-if="item.cia[0] && !$fetchState.pending"
+        color="primary"
       >
         <v-card max-width="350" outlined>
           <v-card-title>
@@ -39,7 +40,7 @@
             :src="getQRCode(item)"
           />
           <v-card-actions>
-            <v-btn text @click="download(item)">
+            <v-btn text @click="download(item)" color="primary">
               Télécharger
             </v-btn>
           </v-card-actions>

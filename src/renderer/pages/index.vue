@@ -16,9 +16,10 @@
           accept=".cia, .nsp, .xci, .nsz, .xcz"
           prepend-icon="mdi-paperclip"
           :disabled="disabledInputFile"
+          color="primary"
         >
           <template v-slot:selection="{ text }">
-            <v-chip small label>
+            <v-chip small label color="primary">
               {{ text }}
             </v-chip>
           </template>
@@ -27,10 +28,10 @@
     </v-row>
     <v-row>
       <v-col class="centered">
-        <v-btn small :disabled="disabledBtnQRCode" @click="createQRCode"
+        <v-btn small color="primary" :disabled="disabledBtnQRCode" @click="createQRCode"
           >Créer un QRCode</v-btn
         >
-        <v-btn small @click="dialogHistoryFiles = true"
+        <v-btn small color="primary" @click="dialogHistoryFiles = true"
           >Historique des QRCodes générés</v-btn
         >
       </v-col>
@@ -44,8 +45,9 @@
           color="primary"
         />
       </v-col>
-      <v-col v-else class="centered">
-        <qrcode-vue v-if="urlFile" :value="urlFile" size="300" level="Q" />
+      <v-col v-else-if="urlFile && !QRCodeLoading" class="centered colQRCode">
+        <qrcode-vue :value="urlFile" size="300" level="Q" />
+        <p>Pour éviter tout problème de détecter du QRCode, la zone est grisé.</p>
       </v-col>
     </v-row>
     <v-dialog v-model="dialogHistoryFiles" width="600">
@@ -58,9 +60,10 @@
           :size="70"
           :width="7"
           indeterminate
+          color="primary"
         />
         <v-list dense v-else>
-          <v-list-item-group>
+          <v-list-item-group color="primary">
             <v-list-item
               v-for="(item, i) in ciasStorage"
               :key="i"
@@ -81,10 +84,10 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text @click="deleteHistory()">
+          <v-btn text color="primary" @click="deleteHistory()">
             Supprimer l'historique
           </v-btn>
-          <v-btn text @click="dialogHistoryFiles = false">
+          <v-btn text color="primary" @click="dialogHistoryFiles = false">
             Fermer
           </v-btn>
         </v-card-actions>
@@ -189,4 +192,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.colQRCode {
+  background: #4a4a4a;
+}
+</style>
