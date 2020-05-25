@@ -28,8 +28,8 @@
       </v-list>
       <template v-slot:append>
         <div class="pa-2">
-          <v-btn color="primary" nuxt to="/options" block>
-            Options
+          <v-btn color="primary" nuxt to="/parameters" block>
+            Paramètres
           </v-btn>
         </div>
       </template>

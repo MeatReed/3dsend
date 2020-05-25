@@ -9,7 +9,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <h1>Options</h1>
+        <h1>Paramètres</h1>
       </v-col>
     </v-row>
     <v-row>
