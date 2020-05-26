@@ -13,7 +13,6 @@ app.use(
 app.use('/api', require('./api'))
 
 storage.get('config', async function(error, data) {
-  console.log(data)
   if (error) throw error
   if (!data.port) {
     await storage.set('config', {

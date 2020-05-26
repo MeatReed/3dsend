@@ -33,12 +33,25 @@
         <v-btn small color="primary" @click="savePortChange">Sauvegarder</v-btn>
       </v-col>
     </v-row>
+    <!-- <v-row>
+      <v-col>
+        <h3>Emplacement</h3>
+        <br />
+        <v-text-field
+            v-model="modelInputPath"
+            label="Emplacement du fichier config.json et cias.json"
+            name="path"
+            disabled
+          />
+        <v-btn small color="primary" @click="changePath">Changer</v-btn>
+      </v-col>
+    </v-row> -->
     <v-dialog v-model="dialogRestart" max-width="400">
       <v-card>
         <v-card-title class="headline">Attention !</v-card-title>
 
         <v-card-text>
-          3DSend a besoin de redémarrer pour appliquer les changements !
+          {{ messageRestart }}
         </v-card-text>
 
         <v-card-actions>
@@ -61,6 +74,7 @@
 import storage from 'electron-json-storage'
 import internalIp from 'internal-ip'
 import tcpPortUsed from 'tcp-port-used'
+// import path from 'path'
 import { remote } from 'electron'
 
 export default {
@@ -68,8 +82,10 @@ export default {
     alertMessage: null,
     modelSwitchDarkMode: null,
     modelInputPort: null,
+    // modelInputPath: storage.getDataPath(),
     config: null,
-    dialogRestart: false
+    dialogRestart: false,
+    messageRestart: null
   }),
   created() {
     const context = this
@@ -105,6 +121,8 @@ export default {
               dark: context.modelSwitchDarkMode,
               port: context.modelInputPort
             })
+            context.messageRestart =
+              '3DSend a besoin de redémarrer pour changer le port !'
             context.dialogRestart = true
           }
         },
@@ -113,6 +131,21 @@ export default {
         }
       )
     },
+    // async changePath() {
+    //   const configPath = await remote.dialog.showOpenDialogSync({
+    //     properties: ['openFile', 'openDirectory']
+    //   })
+    //   console.log(this.config)
+    //   this.modelInputPath = configPath[0]
+    //   this.messageRestart = "3DSend a besoin de redémarrer pour changer l'emplacement du fichier config.json et cias.json !"
+    //   await storage.set('config', {
+    //     dark: this.modelSwitchDarkMode,
+    //     port: this.config.port,
+    //     path: configPath[0]
+    //   })
+    //   storage.setDataPath(configPath[0])
+    //   this.dialogRestart = true
+    // },
     async relaunch() {
       remote.app.relaunch()
       remote.getCurrentWindow().close()
