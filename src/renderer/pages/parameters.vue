@@ -33,6 +33,13 @@
         <v-btn small color="primary" @click="savePortChange">Sauvegarder</v-btn>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col>
+        <h3>Historique des générations</h3>
+        <br />
+        <v-switch v-model="modelSwitchHistoryQRCode" label="Activer/désactiver l'historique" />
+      </v-col>
+    </v-row>
     <v-dialog v-model="dialogRestart" max-width="400">
       <v-card>
         <v-card-title class="headline">Attention !</v-card-title>
@@ -67,6 +74,7 @@ export default {
   data: () => ({
     alertMessage: null,
     modelSwitchDarkMode: null,
+    modelSwitchHistoryQRCode: null,
     modelInputPort: null,
     config: null,
     dialogRestart: false,
@@ -77,8 +85,9 @@ export default {
     storage.get('config', async function(error, data) {
       if (error) throw error
       context.config = data
-      context.modelSwitchDarkMode = data.dark
-      context.modelInputPort = data.port
+      context.modelSwitchDarkMode = data.dark ? data.dark : true
+      context.modelSwitchHistoryQRCode = data.historyGenerate ? data.historyGenerate : true
+      context.modelInputPort = data.port ? data.port : 9850
     })
   },
   watch: {
@@ -87,7 +96,18 @@ export default {
       storage.get('config', async function(error, data) {
         await storage.set('config', {
           dark: value,
-          port: data.port
+          port: data.port ? data.port : 9850,
+          historyGenerate: data.historyGenerate ? data.historyGenerate : true
+        })
+      })
+    },
+    async modelSwitchHistoryQRCode(value) {
+      const context = this
+      storage.get('config', async function(error, data) {
+        await storage.set('config', {
+          dark: data.dark ? data.dark : true,
+          port: data.port ? data.port : 9850,
+          historyGenerate: value
         })
       })
     }
@@ -104,7 +124,8 @@ export default {
           } else {
             await storage.set('config', {
               dark: context.modelSwitchDarkMode,
-              port: context.modelInputPort
+              port: context.modelInputPort,
+              historyGenerate: context.modelSwitchHistoryQRCode
             })
             context.messageRestart =
               '3DSend a besoin de redémarrer pour changer le port !'

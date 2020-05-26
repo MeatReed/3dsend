@@ -17,14 +17,17 @@ router.post('/generateURL', async function(req, res) {
       nameSlug: slugify(file.name),
       path: file.path
     }
-    storage.get('cias', async function(error, data) {
-      if (error) throw error
-      const value = data.find((value) => value.nameSlug === info.nameSlug)
-      if (!value) {
-        let nowData = data
-        nowData.push(info)
-        await storage.set('cias', data)
-      }
+    storage.get('config', async function(error, config) {
+      storage.get('cias', async function(error, data) {
+        if (error) throw error
+        if (!config.historyGenerate) return
+        const value = data.find((value) => value.nameSlug === info.nameSlug)
+        if (!value) {
+          let nowData = data
+          nowData.push(info)
+          await storage.set('cias', data)
+        }
+      })
     })
     res.json({
       info,

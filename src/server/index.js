@@ -17,7 +17,8 @@ storage.get('config', async function(error, data) {
   if (!data.port) {
     await storage.set('config', {
       dark: data.dark ? data.dark : true,
-      port: 9850
+      port: 9850,
+      historyGenerate: data.historyGenerate ? data.historyGenerate : true
     })
     app.listen(9850, (err) => {
       if (err) throw err

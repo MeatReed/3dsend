@@ -18,7 +18,8 @@ export default {
       if (!data.dark) {
         await storage.set('config', {
           dark: true,
-          port: data.port ? data.port : 9850
+          port: data.port ? data.port : 9850,
+          historyGenerate: data.historyGenerate ? data.historyGenerate : true
         })
         context.$vuetify.theme.dark = true
       } else {
