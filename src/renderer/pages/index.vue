@@ -145,7 +145,10 @@ export default {
   },
   watch: {
     modelCiaChoose(file) {
-      this.fileSelected = file
+      this.fileSelected = {
+        path: file.path,
+        name: file.name
+      }
       this.fileReceived = null
       if (file) {
         this.disabledBtnQRCode = false
