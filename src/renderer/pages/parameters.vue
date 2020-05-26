@@ -37,7 +37,10 @@
       <v-col>
         <h3>Historique des générations</h3>
         <br />
-        <v-switch v-model="modelSwitchHistoryQRCode" label="Activer/désactiver l'historique" />
+        <v-switch
+          v-model="modelSwitchHistoryQRCode"
+          label="Activer/désactiver l'historique"
+        />
       </v-col>
     </v-row>
     <v-dialog v-model="dialogRestart" max-width="400">
@@ -86,7 +89,9 @@ export default {
       if (error) throw error
       context.config = data
       context.modelSwitchDarkMode = data.dark ? data.dark : true
-      context.modelSwitchHistoryQRCode = data.historyGenerate ? data.historyGenerate : true
+      context.modelSwitchHistoryQRCode = data.historyGenerate
+        ? data.historyGenerate
+        : true
       context.modelInputPort = data.port ? data.port : 9850
     })
   },
