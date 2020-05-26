@@ -43,7 +43,7 @@
         />
       </v-col>
     </v-row>
-    <v-dialog v-model="dialogRestart" max-width="400">
+    <v-dialog v-model="dialogRestart" max-width="400" persistent>
       <v-card>
         <v-card-title class="headline">Attention !</v-card-title>
 
@@ -54,16 +54,23 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn text @click="dialogRestart = false">
-            Pas maintenant
-          </v-btn>
-
           <v-btn text @click="relaunch">
             Redémarrer 3DSend
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-btn
+      bottom
+      color="primary"
+      dark
+      fab
+      fixed
+      right
+      @click="restoreParams"
+    >
+      <v-icon>mdi-restore</v-icon>
+    </v-btn>
   </v-container>
 </template>
 
@@ -83,7 +90,7 @@ export default {
     dialogRestart: false,
     messageRestart: null
   }),
-  created() {
+  fetch() {
     const context = this
     storage.get('config', async function(error, data) {
       if (error) throw error
@@ -141,6 +148,17 @@ export default {
           context.alertMessage = err
         }
       )
+    },
+    async restoreParams() {
+      await storage.set('config', {
+        dark: true,
+        port: 9850,
+        historyGenerate: true
+      })
+      this.$fetch()
+      this.messageRestart =
+        '3DSend a besoin de redémarrer pour appliquer les changements !'
+      this.dialogRestart = true
     },
     async relaunch() {
       remote.app.relaunch()
