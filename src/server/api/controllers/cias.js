@@ -1,14 +1,12 @@
 const { Router } = require('express')
 const router = Router()
 const storage = require('electron-json-storage')
-const internalIp = require('internal-ip')
 const slugify = require('slugify')
 const fs = require('fs')
 const filesize = require('filesize')
 
 router.post('/generateURL', async function(req, res) {
   const file = req.body.file
-  const ipV4 = await internalIp.v4()
   if (!fs.existsSync(file.path)) {
     return res.status(400).json({
       error: 'Une erreur est survenue : Le fichier est introuvable !'
@@ -17,8 +15,7 @@ router.post('/generateURL', async function(req, res) {
     const info = {
       name: file.name,
       nameSlug: slugify(file.name),
-      path: file.path,
-      url: `http://${ipV4}:9850/api/install/` + slugify(file.name)
+      path: file.path
     }
     storage.get('cias', async function(error, data) {
       if (error) throw error
@@ -31,7 +28,8 @@ router.post('/generateURL', async function(req, res) {
     })
     res.json({
       info,
-      size: filesize(fs.statSync(info.path).size)
+      size: filesize(fs.statSync(info.path).size),
+      port: req.body.port
     })
   }
 })

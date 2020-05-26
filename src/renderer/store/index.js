@@ -1,7 +1,11 @@
+import storage from 'electron-json-storage'
+
 export const actions = {
-  generateURL({}, { file, ipV4 }) {
-    return this.$axios.$post(`http://${ipV4}:9850/api/generateURL`, {
-      file
+  generateURL({}, { file, ipV4, port }) {
+    const context = this
+    return context.$axios.$post(`http://${ipV4}:${port}/api/generateURL`, {
+      file,
+      port
     })
   }
 }

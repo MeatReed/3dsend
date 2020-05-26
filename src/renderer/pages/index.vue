@@ -57,8 +57,8 @@
         <h2>{{ fileReceived.info.name }}</h2>
         <p class="text--disabled">{{ fileReceived.info.path }}</p>
         <p class="text--disabled">{{ fileReceived.size }}</p>
-        <a @click="openLink(fileReceived.info.url)"
-          ><qrcode-vue :value="fileReceived.info.url" size="300" level="Q"
+        <a @click="openLink(QRCodeURL)"
+          ><qrcode-vue :value="QRCodeURL" size="300" level="Q"
         /></a>
         <p>
           Pour éviter tout problème de détecter du QRCode, la zone est grisé.
@@ -127,6 +127,7 @@ export default {
     disabledBtnQRCode: true,
     fileReceived: null,
     QRCodeLoading: false,
+    QRCodeURL: null,
     disabledInputFile: false,
     dialogHistoryFiles: false,
     alertMessage: null,
@@ -149,6 +150,7 @@ export default {
         path: file.path,
         name: file.name
       }
+      this.QRCodeURL = null
       this.fileReceived = null
       if (file) {
         this.disabledBtnQRCode = false
@@ -173,6 +175,7 @@ export default {
       this.disabledInputFile = true
       this.disabledBtnQRCode = true
       this.fileReceived = null
+      this.QRCodeURL = null
       const ipV4 = await internalIp.v4()
       if (!ipV4) {
         this.alertMessage = "Vous n'êtes pas connecté à un réseau !"
@@ -180,25 +183,30 @@ export default {
         this.disabledInputFile = false
         return
       } else {
-        this.$store
+        const context = this
+        storage.get('config', async function(error, data) {
+          context.$store
           .dispatch('generateURL', {
-            file: this.fileSelected,
-            ipV4
+            file: context.fileSelected,
+            ipV4,
+            port: data.port
           })
           .then((response) => {
-            this.QRCodeLoading = false
-            this.disabledInputFile = false
-            this.disabledBtnQRCode = false
-            this.fileReceived = response
-            this.$fetch()
+            context.QRCodeLoading = false
+            context.disabledInputFile = false
+            context.disabledBtnQRCode = false
+            context.fileReceived = response
+            context.QRCodeURL = `http://${ipV4}:${response.port}/api/install/${response.info.nameSlug}`
+            context.$fetch()
           })
           .catch((err) => {
-            this.alertMessage = err.response.data.error
-            this.QRCodeLoading = false
-            this.disabledInputFile = false
-            this.disabledBtnQRCode = false
-            this.fileReceived = null
+            context.alertMessage = err.response.data.error
+            context.QRCodeLoading = false
+            context.disabledInputFile = false
+            context.disabledBtnQRCode = false
+            context.fileReceived = null
           })
+        })
       }
     },
     async deleteHistory() {
