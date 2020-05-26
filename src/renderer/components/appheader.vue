@@ -49,7 +49,7 @@ export default {
     ]
   }),
   methods: {
-    closeWindow: function() {
+    closeWindow() {
       const window = remote.getCurrentWindow()
       window.close()
     }

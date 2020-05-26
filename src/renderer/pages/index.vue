@@ -50,8 +50,16 @@
           color="primary"
         />
       </v-col>
-      <v-col v-else-if="urlFile && !QRCodeLoading" class="centered colQRCode">
-        <qrcode-vue :value="urlFile" size="300" level="Q" />
+      <v-col
+        v-else-if="fileReceived && !QRCodeLoading"
+        class="centered colQRCode"
+      >
+        <h2>{{ fileReceived.info.name }}</h2>
+        <p class="text--disabled">{{ fileReceived.info.path }}</p>
+        <p class="text--disabled">{{ fileReceived.size }}</p>
+        <a @click="openLink(fileReceived.info.url)"
+          ><qrcode-vue :value="fileReceived.info.url" size="300" level="Q"
+        /></a>
         <p>
           Pour éviter tout problème de détecter du QRCode, la zone est grisé.
         </p>
@@ -104,6 +112,7 @@
 </template>
 
 <script>
+import { remote } from 'electron'
 import storage from 'electron-json-storage'
 import internalIp from 'internal-ip'
 import QrcodeVue from 'qrcode.vue'
@@ -116,7 +125,7 @@ export default {
     modelCiaChoose: null,
     fileSelected: null,
     disabledBtnQRCode: true,
-    urlFile: null,
+    fileReceived: null,
     QRCodeLoading: false,
     disabledInputFile: false,
     dialogHistoryFiles: false,
@@ -137,7 +146,7 @@ export default {
   watch: {
     modelCiaChoose(file) {
       this.fileSelected = file
-      this.urlFile = null
+      this.fileReceived = null
       if (file) {
         this.disabledBtnQRCode = false
       } else {
@@ -152,7 +161,7 @@ export default {
         name
       }
       this.fileSelected = file
-      this.urlFile = null
+      this.fileReceived = null
       this.dialogHistoryFiles = false
       this.createQRCode()
     },
@@ -160,7 +169,7 @@ export default {
       this.QRCodeLoading = true
       this.disabledInputFile = true
       this.disabledBtnQRCode = true
-      this.urlFile = null
+      this.fileReceived = null
       const ipV4 = await internalIp.v4()
       if (!ipV4) {
         this.alertMessage = "Vous n'êtes pas connecté à un réseau !"
@@ -170,15 +179,14 @@ export default {
       } else {
         this.$store
           .dispatch('generateURL', {
-            filePath: this.fileSelected.path,
-            fileName: this.fileSelected.name,
+            file: this.fileSelected,
             ipV4
           })
           .then((response) => {
             this.QRCodeLoading = false
             this.disabledInputFile = false
             this.disabledBtnQRCode = false
-            this.urlFile = response.url
+            this.fileReceived = response
             this.$fetch()
           })
           .catch((err) => {
@@ -186,7 +194,7 @@ export default {
             this.QRCodeLoading = false
             this.disabledInputFile = false
             this.disabledBtnQRCode = false
-            this.urlFile = null
+            this.fileReceived = null
           })
       }
     },
@@ -194,6 +202,9 @@ export default {
       await storage.set('cias', [])
       this.ciasStorage = []
       this.$fetch()
+    },
+    openLink(link) {
+      remote.shell.openExternal(link)
     }
   }
 }
@@ -202,5 +213,8 @@ export default {
 <style scoped>
 .colQRCode {
   background: #4a4a4a;
+}
+.v-application p {
+  margin-bottom: 0px;
 }
 </style>
