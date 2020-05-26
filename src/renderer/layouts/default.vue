@@ -30,6 +30,10 @@ export default {
 </script>
 
 <style>
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0 !important;
 }

@@ -6,8 +6,8 @@ const INDEX_PATH = path.join(__dirname, '..', 'renderer', 'index.html')
 const DEV_SERVER_URL = process.env.DEV_SERVER_URL // eslint-disable-line prefer-destructuring
 
 const winHandler = new BrowserWinHandler({
-  height: 600,
-  width: 1000,
+  height: 720,
+  width: 1280,
   frame: false,
   resizable: true
 })
