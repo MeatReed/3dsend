@@ -61,7 +61,7 @@
           ><qrcode-vue :value="QRCodeURL" size="300" level="Q"
         /></a>
         <p>
-          Pour éviter tout problème de détecter du QRCode, la zone est grisé.
+          Pour éviter tout problème de détection du QRCode, la zone est grisé.
         </p>
       </v-col>
     </v-row>
@@ -186,26 +186,26 @@ export default {
         const context = this
         storage.get('config', async function(error, data) {
           context.$store
-          .dispatch('generateURL', {
-            file: context.fileSelected,
-            ipV4,
-            port: data.port
-          })
-          .then((response) => {
-            context.QRCodeLoading = false
-            context.disabledInputFile = false
-            context.disabledBtnQRCode = false
-            context.fileReceived = response
-            context.QRCodeURL = `http://${ipV4}:${response.port}/api/install/${response.info.nameSlug}`
-            context.$fetch()
-          })
-          .catch((err) => {
-            context.alertMessage = err.response.data.error
-            context.QRCodeLoading = false
-            context.disabledInputFile = false
-            context.disabledBtnQRCode = false
-            context.fileReceived = null
-          })
+            .dispatch('generateURL', {
+              file: context.fileSelected,
+              ipV4,
+              port: data.port
+            })
+            .then((response) => {
+              context.QRCodeLoading = false
+              context.disabledInputFile = false
+              context.disabledBtnQRCode = false
+              context.fileReceived = response
+              context.QRCodeURL = `http://${ipV4}:${response.port}/api/install/${response.info.nameSlug}`
+              context.$fetch()
+            })
+            .catch((err) => {
+              context.alertMessage = err.response.data.error
+              context.QRCodeLoading = false
+              context.disabledInputFile = false
+              context.disabledBtnQRCode = false
+              context.fileReceived = null
+            })
         })
       }
     },
