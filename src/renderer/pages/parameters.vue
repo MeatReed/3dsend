@@ -60,15 +60,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-btn
-      bottom
-      color="primary"
-      dark
-      fab
-      fixed
-      right
-      @click="restoreParams"
-    >
+    <v-btn bottom color="primary" dark fab fixed right @click="restoreParams">
       <v-icon>mdi-restore</v-icon>
     </v-btn>
   </v-container>
