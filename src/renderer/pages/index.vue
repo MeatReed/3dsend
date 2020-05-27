@@ -124,6 +124,12 @@
             dense
             outlined
           />
+          <!-- <v-slider
+            v-model="min"
+            min="100"
+            max="500"
+            label="Taille du QRCode"
+          /> -->
         </v-card-text>
 
         <v-divider></v-divider>
