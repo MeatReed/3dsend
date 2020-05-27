@@ -168,7 +168,7 @@ export default {
     alertMessage: null,
     ciasStorage: [],
     itemsQRCode: ['L', 'M', 'Q', 'H'],
-    modelQRCodeLevel: null
+    modelQRCodeLevel: 'Q'
   }),
   fetch() {
     const context = this
