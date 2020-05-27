@@ -61,7 +61,13 @@
         <p class="text--disabled">{{ fileReceived.info.path }}</p>
         <p class="text--disabled">{{ fileReceived.size }}</p>
         <a @click="openLink(QRCodeURL)"
-          ><qrcode-vue :value="QRCodeURL" class="qrcode" :size="QRCodeSize" :background="QRCodeBackgroundColor" :foreground="QRCodeForegroundColor" :level="modelQRCodeLevel"
+          ><qrcode-vue
+            :value="QRCodeURL"
+            class="qrcode"
+            :size="QRCodeSize"
+            :background="QRCodeBackgroundColor"
+            :foreground="QRCodeForegroundColor"
+            :level="modelQRCodeLevel"
         /></a>
         <!-- <p>
           Pour éviter tout problème de détection du QRCode, la zone est grisé.
@@ -133,7 +139,12 @@
           <!-- <label>QRCode background</label>
           <v-color-picker class="noBorder" hide-mode-switch hide-inputs v-model="QRCodeBackgroundColor" /> -->
           <label>QRCode foreground</label>
-          <v-color-picker class="noBorder" hide-mode-switch hide-inputs v-model="QRCodeForegroundColor" />
+          <v-color-picker
+            class="noBorder"
+            hide-mode-switch
+            hide-inputs
+            v-model="QRCodeForegroundColor"
+          />
         </v-card-text>
 
         <v-divider></v-divider>
@@ -174,8 +185,8 @@ export default {
     itemsQRCode: ['L', 'M', 'Q', 'H'],
     modelQRCodeLevel: 'Q',
     QRCodeSize: 300,
-    QRCodeBackgroundColor: "#ffffff",
-    QRCodeForegroundColor: "#000000"
+    QRCodeBackgroundColor: '#ffffff',
+    QRCodeForegroundColor: '#000000'
   }),
   fetch() {
     const context = this
