@@ -17,6 +17,13 @@ router.post('/generateURL', async function(req, res) {
       nameSlug: slugify(file.name),
       path: file.path
     }
+    const ext = path.extname(file.name)
+    const extArr = ['.cia']
+    if (!extArr.includes(ext)) {
+      return res.status(400).json({
+        error: "Une erreur est survenue : Le fichier n'est pas un .cia !"
+      })
+    }
     storage.get('config', async function(error, config) {
       storage.get('cias', async function(error, data) {
         if (error) throw error
