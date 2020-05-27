@@ -39,6 +39,9 @@
         <v-btn small color="primary" @click="dialogHistoryFiles = true"
           >Historique des QRCodes générés</v-btn
         >
+        <v-btn small color="primary" @click="dialogQRCode = true"
+          >Options de QRCode</v-btn
+        >
       </v-col>
     </v-row>
     <v-row>
@@ -58,11 +61,11 @@
         <p class="text--disabled">{{ fileReceived.info.path }}</p>
         <p class="text--disabled">{{ fileReceived.size }}</p>
         <a @click="openLink(QRCodeURL)"
-          ><qrcode-vue :value="QRCodeURL" size="300" level="Q"
+          ><qrcode-vue :value="QRCodeURL" size="300" class="test" :level="modelQRCodeLevel ? modelQRCodeLevel : 'Q'"
         /></a>
-        <p>
+        <!-- <p>
           Pour éviter tout problème de détection du QRCode, la zone est grisé.
-        </p>
+        </p> -->
       </v-col>
     </v-row>
     <v-dialog v-model="dialogHistoryFiles" width="600">
@@ -108,6 +111,31 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="dialogQRCode" width="600">
+      <v-card>
+        <v-card-title>
+          Modifier le QRCode
+        </v-card-title>
+        <v-card-text>
+          <v-select
+            v-model="modelQRCodeLevel"
+            label="QRCode Level"
+            :items="itemsQRCode"
+            dense
+            outlined
+          />
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn text color="primary" @click="dialogQRCode = false">
+            Fermer
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -130,8 +158,11 @@ export default {
     QRCodeURL: null,
     disabledInputFile: false,
     dialogHistoryFiles: false,
+    dialogQRCode: false,
     alertMessage: null,
-    ciasStorage: []
+    ciasStorage: [],
+    itemsQRCode: ['L', 'M', 'Q', 'H'],
+    modelQRCodeLevel: null
   }),
   fetch() {
     const context = this
@@ -221,9 +252,12 @@ export default {
 }
 </script>
 
-<style scoped>
-.colQRCode {
+<style>
+/* .colQRCode {
   background: #4a4a4a;
+} */
+canvas {
+  border: 15px solid #ffffff;
 }
 .v-application p {
   margin-bottom: 0px;
