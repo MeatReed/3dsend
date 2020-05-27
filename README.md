@@ -2,6 +2,31 @@
 
 > Interface graphique sous Windows et Linux permettant d'installer des cias facilement ! :D
 
+## 3DSend c'est quoi ?
+Interface graphique sous Windows et Linux permettant d'installer des .cia facilement ! :D
+3DSend marche seulement s'il est connecté à un réseau local(pas besoins d'internet sauf pour TinyDB).
+Il est rapide et simple !
+(Compatible Windows et Linux)
+
+### Démonstration
+![3dsend_demo](https://i.imgur.com/aeOsOlS.gif)
+
+### Installation
+Windows : https://github.com/MeatReed/3dsend/releases/download/1.3.0/3dsend_windows.exe
+Lancez juste `3dsend_windows.exe` et 3DSend s'installera automatiquement.
+
+Linux : https://github.com/MeatReed/3dsend/releases/download/1.3.0/3dsend_linux.deb
+`apt install 3dsend_linux.deb`
+
+### Credits
+
+* [electron](https://www.electronjs.org/)
+* [electron-nuxt](https://github.com/michalzaq12/electron-nuxt)
+* [TinyDB](https://tinydb.eiphax.tech/)
+
+[Discord](https://discord.gg/9q7E6df)
+[Youtube](https://www.youtube.com/channel/UCxcgIQ08IewI19Q_eiJxKRA)
+
 #### Build Setup
 
 ``` bash
