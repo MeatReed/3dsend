@@ -250,7 +250,7 @@ export default {
               context.disabledBtnQRCode = false
               context.fileReceived = response
               context.QRCodeURL = `http://${ipV4}:${response.port}/api/install/${response.info.nameSlug}`
-              context.localUrl = `http://${ipV4}:${response.port}/api/install`
+              context.localUrl = `http://${ipV4}:${response.port}/`
               context.$fetch()
             })
             .catch((err) => {

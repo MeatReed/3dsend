@@ -5,8 +5,6 @@ const slugify = require('slugify')
 const fs = require('fs')
 const filesize = require('filesize')
 
-let cia = {}
-
 router.post('/generateURL', async function(req, res) {
   const file = req.body.file
   if (!fs.existsSync(file.path)) {
@@ -37,21 +35,11 @@ router.post('/generateURL', async function(req, res) {
         }
       })
     })
-    cia = info
+    await storage.set('cia', info)
     res.json({
       info,
       size: filesize(fs.statSync(info.path).size),
       port: req.body.port
-    })
-  }
-})
-
-router.get('/install/', function(req, res, next) {
-  if (cia.path) {
-    res.sendFile(cia.path)
-  } else {
-    return res.status(400).json({
-      error: 'Une erreur est survenue.'
     })
   }
 })
@@ -72,7 +60,11 @@ router.get('/install/:slugname', function(req, res, next) {
           error: 'Une erreur est survenue : Le fichier est introuvable !'
         })
       } else {
-        res.sendFile(value.path)
+        res.sendFile(value.path, {
+          headers: {
+            'Content-Disposition': 'attachment; filename=' + value.name
+          }
+        })
       }
     })
   }
