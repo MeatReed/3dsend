@@ -21,9 +21,9 @@ const linuxOS = {
 
 module.exports = {
   asar: true,
-  productName: '3dsend',
-  appId: 'com.meatreed.3dsend',
-  artifactName: '3dsend.${ext}',
+  productName: '3DSend',
+  appId: 'com.meatreed.3DSend',
+  artifactName: '3DSend.${ext}',
   directories: {
     output: 'build'
   },
