@@ -48,7 +48,7 @@ router.get('/install/:slugname', function(req, res, next) {
 
   if (!SlugName) {
     return res.status(400).json({
-      error: 'Une erreur est survenue'
+      error: 'Une erreur est survenue.'
     })
   } else {
     storage.get('cias', function(error, data) {

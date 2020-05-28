@@ -1,8 +1,8 @@
 const express = require('express')
 
-// Add cias Routes
 var router = express.Router()
 
+// Add cias Routes
 var cias = require('./controllers/cias')
 
 router.use(cias)

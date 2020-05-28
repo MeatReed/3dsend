@@ -69,9 +69,6 @@
             :foreground="QRCodeForegroundColor"
             :level="modelQRCodeLevel"
         /></a>
-        <!-- <p>
-          Pour éviter tout problème de détection du QRCode, la zone est grisé.
-        </p> -->
       </v-col>
     </v-row>
     <v-dialog v-model="dialogHistoryFiles" width="600">
@@ -136,8 +133,6 @@
             max="500"
             label="Taille du QRCode"
           />
-          <!-- <label>QRCode background</label>
-          <v-color-picker class="noBorder" hide-mode-switch hide-inputs v-model="QRCodeBackgroundColor" /> -->
           <label>QRCode foreground</label>
           <v-color-picker
             class="noBorder"
@@ -233,7 +228,7 @@ export default {
       this.QRCodeURL = null
       const ipV4 = await internalIp.v4()
       if (!ipV4) {
-        this.alertMessage = "Vous n'êtes pas connecté à un réseau !"
+        this.alertMessage = "Vous n'êtes pas connecté à un réseau local !"
         this.QRCodeLoading = false
         this.disabledInputFile = false
         return

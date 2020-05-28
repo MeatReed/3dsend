@@ -16,8 +16,8 @@ app.on('window-all-closed', function() {
   if (process.platform !== 'darwin') app.quit()
 })
 
-// Load here all startup windows
-require('./mainWindow')
-
 // Load server API
 require('../server')
+
+// Load here all startup windows
+require('./mainWindow')

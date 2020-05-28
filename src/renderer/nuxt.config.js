@@ -11,8 +11,11 @@ module.exports = {
   },
   loading: false,
   plugins: [{ ssr: true, src: '@/plugins/icons.js' }],
-  buildModules: ['@nuxt/components'],
+  buildModules: ['@aceforth/nuxt-optimized-images', '@nuxt/components'],
   modules: ['@nuxtjs/vuetify', '@nuxtjs/axios'],
+  optimizedImages: {
+    optimizeImages: true
+  },
   vuetify: {
     theme: {
       dark: true,
