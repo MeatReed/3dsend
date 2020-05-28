@@ -69,6 +69,8 @@
             :foreground="QRCodeForegroundColor"
             :level="modelQRCodeLevel"
         /></a>
+        <p class="text--disabled">Lien #1 : {{ QRCodeURL }}</p>
+        <p class="text--disabled">Lien #2 : {{ localUrl }}</p>
       </v-col>
     </v-row>
     <v-dialog v-model="dialogHistoryFiles" width="600">
@@ -181,7 +183,8 @@ export default {
     modelQRCodeLevel: 'Q',
     QRCodeSize: 300,
     QRCodeBackgroundColor: '#ffffff',
-    QRCodeForegroundColor: '#000000'
+    QRCodeForegroundColor: '#000000',
+    localUrl: null
   }),
   fetch() {
     const context = this
@@ -247,6 +250,7 @@ export default {
               context.disabledBtnQRCode = false
               context.fileReceived = response
               context.QRCodeURL = `http://${ipV4}:${response.port}/api/install/${response.info.nameSlug}`
+              context.localUrl = `http://${ipV4}:${response.port}/api/install`
               context.$fetch()
             })
             .catch((err) => {
