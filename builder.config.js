@@ -8,7 +8,8 @@ const windowsOS = {
   },
 
   nsis: {
-    differentialPackage: true
+    differentialPackage: true,
+    uninstallDisplayName: '3DSend'
   }
 }
 
@@ -20,7 +21,7 @@ const linuxOS = {
 }
 
 module.exports = {
-  asar: true,
+  compression: 'maximum',
   productName: '3DSend',
   appId: 'com.meatreed.3DSend',
   artifactName: '3DSend.${ext}',
