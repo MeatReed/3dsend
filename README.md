@@ -12,11 +12,11 @@ Il est rapide et simple !
 ![3dsend_demo](https://i.imgur.com/aeOsOlS.gif)
 
 ### Installation
-Windows : https://github.com/MeatReed/3dsend/releases/download/1.3.0/3dsend_windows.exe
-Lancez juste `3dsend_windows.exe` et 3DSend s'installera automatiquement.
+Windows : https://github.com/MeatReed/3dsend/releases/download/1.4.0/3DSend_windows.exe
+Lancez juste `3DSend_windows.exe` et 3DSend s'installera automatiquement.
 
-Linux : https://github.com/MeatReed/3dsend/releases/download/1.3.0/3dsend_linux.deb
-`apt install 3dsend_linux.deb`
+Linux : https://github.com/MeatReed/3dsend/releases/download/1.4.0/3DSend_linux.deb
+`apt install 3DSend_linux.deb`
 
 ### Credits
 
