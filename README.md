@@ -3,10 +3,18 @@
 > Interface graphique sous Windows et Linux permettant d'installer des cias facilement ! :D
 
 ## 3DSend c'est quoi ?
-Interface graphique sous Windows et Linux permettant d'installer des .cia facilement ! :D
-3DSend marche seulement s'il est connecté à un réseau local(pas besoins d'internet sauf pour TinyDB).
-Il est rapide et simple !
-(Compatible Windows et Linux)
+3DSend est un utilitaire multi-plateformes Windows et Linux permettant d'installer des cias stockés sur un PC directement sur une 3DS en passant par FBI ou tout autre application pouvant installer des cias grâce à un lien ou un QR code.
+
+Les fonctionnalités principales de l'application sont les suivantes:
+- L'installation de CIAs depuis un PC sur le même réseau local.
+- Une intégration de TinyDB.
+- Un historique pour permettre de choisir des QR codes parmi les anciens générés.
+- Un choix du port de serveur pour les personnes avec une configuration réseau particulière.
+
+Les points forts de 3DSend :
+- De meilleures performances par rapport aux concurrents (un chargement de l'application optimisé).
+- Fonctionne également sans un accès à internet, seul un réseau local est nécessaire (à part pour TinyDB).
+- Fonctionne sous Windows et Linux.
 
 ### Démonstration
 ![3dsend_demo](https://i.imgur.com/aeOsOlS.gif)
