@@ -7,32 +7,31 @@
 
 Les fonctionnalités principales de l'application sont les suivantes:
 - L'installation de CIAs depuis un PC sur le même réseau local.
-- Une intégration de TinyDB.
+- Une intégration de TinyDB(temporairement inutilisable).
 - Un historique pour permettre de choisir des QR codes parmi les anciens générés.
 - Un choix du port de serveur pour les personnes avec une configuration réseau particulière.
 
 Les points forts de 3DSend :
 - De meilleures performances par rapport aux concurrents (un chargement de l'application optimisé).
-- Fonctionne également sans un accès à internet, seul un réseau local est nécessaire (à part pour TinyDB).
+- Fonctionne également sans un accès à internet, seul un réseau local est nécessaire (à part pour Github).
 - Fonctionne sous Windows et Linux.
 
 ### Démonstration
 ![3dsend_demo](https://i.imgur.com/aeOsOlS.gif)
 
 ### Installation
-Windows : https://github.com/MeatReed/3dsend/releases/download/1.4.0/3DSend_windows.exe
+Windows : https://github.com/MeatReed/3dsend/releases/download/1.4.1/3DSend_windows.exe
 Lancez juste `3DSend_windows.exe` et 3DSend s'installera automatiquement.
 
-Linux : https://github.com/MeatReed/3dsend/releases/download/1.4.0/3DSend_linux.deb
+Linux : https://github.com/MeatReed/3dsend/releases/download/1.4.1/3DSend_linux.deb
 `apt install 3DSend_linux.deb`
 
 ### Credits
 
 * [electron](https://www.electronjs.org/)
 * [electron-nuxt](https://github.com/michalzaq12/electron-nuxt)
-* [TinyDB](https://tinydb.eiphax.tech/)
 
-[Discord](https://discord.gg/9q7E6df)
+Discord: `TIーム#3693`
 [Youtube](https://www.youtube.com/channel/UCxcgIQ08IewI19Q_eiJxKRA)
 
 #### Build Setup
