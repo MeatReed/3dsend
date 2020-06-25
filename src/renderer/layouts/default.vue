@@ -1,9 +1,9 @@
 <template>
   <v-app id="3dsend">
     <appheader />
-    <v-content>
+    <v-main>
       <nuxt keep-alive />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

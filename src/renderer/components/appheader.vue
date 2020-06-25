@@ -44,7 +44,7 @@ export default {
     drawer: false,
     items: [
       { title: 'Générer des QRCode', icon: 'mdi-qrcode', to: '/' },
-      { title: 'TinyDB', icon: 'mdi-application', to: '/tinydb' },
+      { title: 'Github', icon: 'mdi-github', to: '/github' },
       { title: 'Information', icon: 'mdi-play', to: '/info' }
     ]
   }),

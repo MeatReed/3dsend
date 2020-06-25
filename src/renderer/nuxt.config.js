@@ -4,6 +4,7 @@
  * @link {https://nuxtjs.org/guide/configuration/}
  */
 module.exports = {
+  components: true,
   mode: 'spa', // or 'universal'
   head: {
     title: '3dsend',

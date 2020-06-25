@@ -23,7 +23,7 @@ const linuxOS = {
 module.exports = {
   compression: 'maximum',
   productName: '3DSend',
-  appId: 'com.meatreed.3DSend',
+  appId: 'com.meatreed.3dsend',
   artifactName: '3DSend.${ext}',
   directories: {
     output: 'build'
