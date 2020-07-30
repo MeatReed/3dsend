@@ -7,7 +7,7 @@
 
 Les fonctionnalités principales de l'application sont les suivantes:
 - L'installation de CIAs depuis un PC sur le même réseau local.
-- Une intégration de TinyDB(temporairement inutilisable).
+- Une intégration de MacroDB.
 - Un historique pour permettre de choisir des QR codes parmi les anciens générés.
 - Un choix du port de serveur pour les personnes avec une configuration réseau particulière.
 
