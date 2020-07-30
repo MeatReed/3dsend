@@ -1,6 +1,6 @@
 {
   "name": "3dsend",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Interface graphique sous Windows permettant d'installer des cias facilement ! :D",
   "main": "./dist/main/index.js",
   "scripts": {

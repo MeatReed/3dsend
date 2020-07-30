@@ -18,7 +18,7 @@
                 MeatReed
               </v-list-item-title>
               <v-list-item-subtitle>
-                Application: 1.4.1
+                Application: 1.5.0
               </v-list-item-subtitle>
               <v-list-item-subtitle> Nuxt.js: {{ nuxt }} </v-list-item-subtitle>
               <v-list-item-subtitle>Vue.js: {{ vue }}</v-list-item-subtitle>
