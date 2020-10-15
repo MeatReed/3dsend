@@ -1,6 +1,6 @@
 # 3dsend
 
-> Graphical interface for Windows and Linux for easy installation of CIAs on 3DS ! :D
+> Graphical interface for Windows and Linux for easy installation of CIAs on 3DS ! :D \
 > Interface graphique sous Windows et Linux permettant d'installer des CIAs facilement ! :D
 
 ## What is 3DSend?
