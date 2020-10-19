@@ -8,13 +8,13 @@
 
 The main features of the application are as follows:
 - Installation of CIAs from a PC on the same local network.
-- An integration of MacroDB.
-- A history to allow the choice of QR codes among the old ones generated.
-- A choice of server port for people with a particular network configuration.
+- Integration with MacroDB.
+- History to allow the choice of QR codes among the old ones generated.
+- Choice of server port for people with particular network configurations.
 
 The strengths of 3DSend:
 - Better performance compared to competitors (optimized application loading).
-- Also works without internet access, only a local network is needed (except for Github).
+- Also works without internet access, only a local network is needed (except for downloading from Github).
 - Works on Windows and Linux.
 
 ## 3DSend c'est quoi?
@@ -31,14 +31,15 @@ Les points forts de 3DSend :
 - Fonctionne également sans un accès à internet, seul un réseau local est nécessaire (à part pour Github).
 - Fonctionne sous Windows et Linux.
 
-### Démonstration
+### Demonstration/Démonstration
 ![3dsend_demo](https://i.imgur.com/aeOsOlS.gif)
 
 ### Installation
-Windows : https://github.com/MeatReed/3dsend/releases/download/1.5.0/3DSend_windows.exe
+Windows : https://github.com/MeatReed/3dsend/releases/download/1.5.0/3DSend_windows.exe  
+Just run `3DSend_windows.exe` and 3DSend will install automatically.  
 Lancez juste `3DSend_windows.exe` et 3DSend s'installera automatiquement.
 
-Linux : https://github.com/MeatReed/3dsend/releases/download/1.5.0/3DSend_linux.deb
+Linux : https://github.com/MeatReed/3dsend/releases/download/1.5.0/3DSend_linux.deb  
 `apt install 3DSend_linux.deb`
 
 ### Credits
