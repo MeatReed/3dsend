@@ -4,6 +4,18 @@
 > Interface graphique sous Windows et Linux permettant d'installer des CIAs facilement ! :D
 
 ## What is 3DSend?
+3DSend is a multi-platform Windows and Linux utility allowing to install cias stored on a PC directly on a 3DS via FBI or any other application that can install cias thanks to a link or a QR code.
+
+The main features of the application are as follows:
+- Installation of CIAs from a PC on the same local network.
+- An integration of MacroDB.
+- A history to allow the choice of QR codes among the old ones generated.
+- A choice of server port for people with a particular network configuration.
+
+The strengths of 3DSend:
+- Better performance compared to competitors (optimized application loading).
+- Also works without internet access, only a local network is needed (except for Github).
+- Works on Windows and Linux.
 
 ## 3DSend c'est quoi?
 3DSend est un utilitaire multi-plateformes Windows et Linux permettant d'installer des cias stockés sur un PC directement sur une 3DS en passant par FBI ou tout autre application pouvant installer des cias grâce à un lien ou un QR code.
