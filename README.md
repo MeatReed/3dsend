@@ -46,6 +46,7 @@ Linux : https://github.com/MeatReed/3dsend/releases/download/1.5.0/3DSend_linux.
 
 * [electron](https://www.electronjs.org/)
 * [electron-nuxt](https://github.com/michalzaq12/electron-nuxt)
+#### Thank you [Sadhgun](https://github.com/Sadhgun) for the English translation !
 
 Discord: `TIーム#3693`
 [Youtube](https://www.youtube.com/channel/UCxcgIQ08IewI19Q_eiJxKRA)
