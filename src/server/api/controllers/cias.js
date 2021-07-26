@@ -5,7 +5,7 @@ const slugify = require('slugify')
 const fs = require('fs')
 const filesize = require('filesize')
 
-router.post('/generateURL', async function(req, res) {
+router.post('/generateURL', function(req, res) {
   const file = req.body.file
   if (!fs.existsSync(file.path)) {
     return res.status(400).json({
@@ -23,22 +23,24 @@ router.post('/generateURL', async function(req, res) {
         error: "Une erreur est survenue : Le fichier n'est pas un .cia !"
       })
     }
-    storage.get('config', async function(error, config) {
-      storage.get('cias', async function(error, data) {
-        if (error) throw error
-        if (!config.historyGenerate) return
-        const value = data.find((value) => value.nameSlug === info.nameSlug)
-        if (!value) {
-          let nowData = data
-          nowData.push(info)
-          await storage.set('cias', data)
-        }
-      })
+    storage.getMany([ 'config', 'cias' ], function(error, data) {
+      if (error) throw error
+      if (!data.config.historyGenerate) return
+      if (!data.cias[0]) {
+        storage.set('cias', [])
+        data.cias = []
+      }
+      const value = data.cias.find((value) => value.nameSlug === info.nameSlug)
+      if (!value) {
+        let nowData = data.cias
+        nowData.push(info)
+        storage.set('cias', data.cias)
+      }
     })
-    await storage.set('cia', info)
+    storage.set('cia', info)
     res.json({
       info,
-      size: filesize(fs.statSync(info.path).size),
+      size: fs.statSync(info.path).size,
       port: req.body.port
     })
   }
@@ -54,6 +56,10 @@ router.get('/install/:slugname', function(req, res, next) {
   } else {
     storage.get('cias', function(error, data) {
       if (error) throw error
+      if (!data[0]) {
+        storage.set('cias', [])
+        data = []
+      }
       const value = data.find((value) => value.nameSlug === SlugName)
       if (!fs.existsSync(value.path)) {
         return res.status(400).json({

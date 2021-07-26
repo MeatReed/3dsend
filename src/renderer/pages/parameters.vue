@@ -68,7 +68,7 @@
 
 <script>
 import storage from 'electron-json-storage'
-import internalIp from 'internal-ip'
+import { networkInterfaces } from 'os';
 import tcpPortUsed from 'tcp-port-used'
 import { remote } from 'electron'
 
@@ -84,7 +84,7 @@ export default {
   }),
   fetch() {
     const context = this
-    storage.get('config', async function(error, data) {
+    storage.get('config', function(error, data) {
       if (error) throw error
       context.config = data
       context.modelSwitchDarkMode = data.dark ? data.dark : true
@@ -95,20 +95,19 @@ export default {
     })
   },
   watch: {
-    async modelSwitchDarkMode(value) {
+    modelSwitchDarkMode(value) {
       this.$vuetify.theme.dark = value
-      storage.get('config', async function(error, data) {
-        await storage.set('config', {
+      storage.get('config', function(error, data) {
+        storage.set('config', {
           dark: value,
           port: data.port ? data.port : 9850,
           historyGenerate: data.historyGenerate ? data.historyGenerate : true
         })
       })
     },
-    async modelSwitchHistoryQRCode(value) {
-      const context = this
-      storage.get('config', async function(error, data) {
-        await storage.set('config', {
+    modelSwitchHistoryQRCode(value) {
+      storage.get('config', function(error, data) {
+        storage.set('config', {
           dark: data.dark ? data.dark : true,
           port: data.port ? data.port : 9850,
           historyGenerate: value
@@ -117,16 +116,16 @@ export default {
     }
   },
   methods: {
-    async savePortChange() {
-      const ipV4 = await internalIp.v4()
+    savePortChange() {
+      const ipV4 = Object.values(networkInterfaces()).flat().find(i => i.family == 'IPv4' && !i.internal).address;
       const context = this
       tcpPortUsed.check(parseInt(this.modelInputPort), ipV4).then(
-        async function(inUse) {
+        function(inUse) {
           if (inUse) {
             context.alertMessage =
               'Le port ' + context.modelInputPort + ' est déjà utilisé !'
           } else {
-            await storage.set('config', {
+            storage.set('config', {
               dark: context.modelSwitchDarkMode,
               port: context.modelInputPort,
               historyGenerate: context.modelSwitchHistoryQRCode
@@ -141,8 +140,8 @@ export default {
         }
       )
     },
-    async restoreParams() {
-      await storage.set('config', {
+    restoreParams() {
+      storage.set('config', {
         dark: true,
         port: 9850,
         historyGenerate: true
@@ -152,8 +151,7 @@ export default {
         '3DSend a besoin de redémarrer pour appliquer les changements !'
       this.dialogRestart = true
     },
-    async relaunch() {
-      remote.app.relaunch()
+    relaunch() {
       remote.getCurrentWindow().close()
     }
   }

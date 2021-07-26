@@ -13,18 +13,9 @@ import storage from 'electron-json-storage'
 export default {
   created() {
     const context = this
-    storage.get('config', async function(error, data) {
+    storage.get('config', function(error, data) {
       if (error) throw error
-      if (!data.dark) {
-        await storage.set('config', {
-          dark: true,
-          port: data.port ? data.port : 9850,
-          historyGenerate: data.historyGenerate ? data.historyGenerate : true
-        })
-        context.$vuetify.theme.dark = true
-      } else {
-        context.$vuetify.theme.dark = data.dark
-      }
+      context.$vuetify.theme.dark = data.dark
     })
   }
 }

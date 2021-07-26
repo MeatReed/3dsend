@@ -11,26 +11,26 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Install Node.js, NPM and Yarn
-        uses: actions/setup-node@v1.4.2
+        uses: actions/setup-node@v2
         with:
           node-version: 12
 
       - name: Build/release Electron app
-        uses: michalzaq12/action-electron-nuxt@v1.4.4
+        uses: michalzaq12/action-electron-nuxt@v1.5.0
         with:
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
           # type: string
           github_token: ${{ secrets.github_token }}
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v2.2.4
         with:
           name: 3dsend-artifact
           path: build/

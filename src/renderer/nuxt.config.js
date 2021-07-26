@@ -3,20 +3,32 @@
  * This default configuration can be overwritten in this file
  * @link {https://nuxtjs.org/guide/configuration/}
  */
+
+
 module.exports = {
-  components: true,
-  mode: 'spa', // or 'universal'
+  ssr: false,
+  target: 'static',
   head: {
     title: '3dsend',
-    meta: [{ charset: 'utf-8' }]
+    meta: [
+      { charset: "utf-8" }
+    ]
   },
   loading: false,
-  plugins: [{ ssr: true, src: '@/plugins/icons.js' }],
-  buildModules: ['@aceforth/nuxt-optimized-images', '@nuxt/components'],
-  modules: ['@nuxtjs/vuetify', '@nuxtjs/axios'],
-  optimizedImages: {
-    optimizeImages: true
+  plugins: [
+    {
+      ssr: true, src: '@/plugins/icons.js'
+    },
+  ],
+  components: true,
+  modules: [
+    '@nuxtjs/vuetify',
+    '@nuxtjs/axios'
+  ],
+  axios: {
+    proxy: true
   },
+
   vuetify: {
     theme: {
       dark: true,
@@ -30,4 +42,4 @@ module.exports = {
       }
     }
   }
-}
+};

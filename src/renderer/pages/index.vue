@@ -160,8 +160,8 @@
 <script>
 import { remote } from 'electron'
 import storage from 'electron-json-storage'
-import internalIp from 'internal-ip'
 import QrcodeVue from 'qrcode.vue'
+import { networkInterfaces } from 'os';
 
 export default {
   components: {
@@ -188,13 +188,9 @@ export default {
   }),
   fetch() {
     const context = this
-    storage.get('cias', async function(error, data) {
+    storage.get('cias', function(error, data) {
       if (error) throw error
-      if (!data[0]) {
-        await storage.set('cias', [])
-      } else {
-        context.ciasStorage = data.reverse()
-      }
+      context.ciasStorage = data.reverse()
     })
   },
   watch: {
@@ -223,13 +219,13 @@ export default {
       this.dialogHistoryFiles = false
       this.createQRCode()
     },
-    async createQRCode() {
+    createQRCode() {
       this.QRCodeLoading = true
       this.disabledInputFile = true
       this.disabledBtnQRCode = true
       this.fileReceived = null
       this.QRCodeURL = null
-      const ipV4 = await internalIp.v4()
+      const ipV4 = Object.values(networkInterfaces()).flat().find(i => i.family == 'IPv4' && !i.internal).address;
       if (!ipV4) {
         this.alertMessage = "Vous n'êtes pas connecté à un réseau local !"
         this.QRCodeLoading = false
@@ -237,7 +233,7 @@ export default {
         return
       } else {
         const context = this
-        storage.get('config', async function(error, data) {
+        storage.get('config', function(error, data) {
           context.$store
             .dispatch('generateURL', {
               file: context.fileSelected,
@@ -263,8 +259,8 @@ export default {
         })
       }
     },
-    async deleteHistory() {
-      await storage.set('cias', [])
+    deleteHistory() {
+      storage.set('cias', [])
       this.ciasStorage = []
       this.$fetch()
     },

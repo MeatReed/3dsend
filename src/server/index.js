@@ -12,6 +12,12 @@ app.use(
   })
 )
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  next()
+})
+
 app.use('/api', require('./api'))
 
 app.get('/', function(req, res, next) {
@@ -38,20 +44,9 @@ app.get('/', function(req, res, next) {
   })
 })
 
-storage.get('config', async function(error, data) {
+storage.get('config', function(error, data) {
   if (error) throw error
-  if (!data.port) {
-    await storage.set('config', {
-      dark: data.dark ? data.dark : true,
-      port: 9850,
-      historyGenerate: data.historyGenerate ? data.historyGenerate : true
-    })
-    app.listen(9850, (err) => {
-      if (err) throw err
-    })
-  } else {
-    app.listen(data.port, (err) => {
-      if (err) throw err
-    })
-  }
+  app.listen(data.port ? data.port : 9850, (err) => {
+    if (err) throw err
+  })
 })

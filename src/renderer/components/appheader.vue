@@ -44,7 +44,6 @@ export default {
     drawer: false,
     items: [
       { title: 'Générer des QRCode', icon: 'mdi-qrcode', to: '/' },
-      { title: 'MacroDB', icon: 'mdi-github', to: '/macrodb' },
       { title: 'Information', icon: 'mdi-play', to: '/info' }
     ]
   }),
