@@ -40,7 +40,7 @@ router.post('/generateURL', function(req, res) {
     storage.set('cia', info)
     res.json({
       info,
-      size: fs.statSync(info.path).size,
+      size: filesize.default(fs.statSync(info.path).size),
       port: req.body.port
     })
   }
