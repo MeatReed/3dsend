@@ -43,7 +43,7 @@
     "roboto-fontface": "0.10.0",
     "slugify": "^1.6.0",
     "tcp-port-used": "^1.0.2",
-    "vuetify": "2.5.1",
+    "vuetify": "2.6.10",
     "webpack": "4.44.2",
     "webpack-node-externals": "2.5.2"
   }
